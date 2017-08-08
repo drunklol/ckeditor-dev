@@ -1640,7 +1640,7 @@
 					'outset'
 				],
 
-				_widthRegExp: /^(thin|medium|thick|[\+-]?\d+(\.?\d+|)[a-z%]+|0+(\.?0+|))$/,
+				_widthRegExp: /^(thin|medium|thick|[\+-]?\d+(\.?\d+|)[a-z%]+|[\+-]?0+(\.?0+|)|\.\d+[a-z%]+)$/,
 
 				_rgbaRegExp: /rgba?\(\s*\d+%?\s*,\s*\d+%?\s*,\s*\d+%?\s*(?:,\s*[0-9.]+\s*)?\)/gi,
 
@@ -1729,7 +1729,7 @@
 
 				/**
 				 * Parses the `border` CSS property shorthand format.
-				 * This CSS properyty doesn't support inherit. (https://www.w3.org/TR/css3-background/#the-border-shorthands)
+				 * This CSS property doesn't support inherit. (https://www.w3.org/TR/css3-background/#the-border-shorthands)
 				 *
 				 *		console.log( CKEDITOR.tools.style.parse.border( '3px solid #ffeedd' ) );
 				 *		// Logs: { width: "3px", style: "solid", color: "#ffeedd" }

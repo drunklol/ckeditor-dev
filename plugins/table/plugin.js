@@ -30,11 +30,23 @@ CKEDITOR.plugins.add( 'table', {
 					element: 'table',
 					right: function( element ) {
 						if ( element.styles ) {
+							var parsedStyle;
 							if ( element.styles.border ) {
-								var parsedStyle = CKEDITOR.tools.style.parse.border( element.styles.border );
+								parsedStyle = CKEDITOR.tools.style.parse.border( element.styles.border );
 								if ( parsedStyle.style && parsedStyle.style === 'solid' &&
 										parsedStyle.width && parseFloat( parsedStyle.width ) !== 0 ) {
 									element.attributes.border = 1;
+								}
+							}
+							if ( CKEDITOR.env.ie && CKEDITOR.env.version === 8 ) {
+								if ( element.styles[ 'border-left' ] && element.styles[ 'border-left' ] === element.styles[ 'border-right' ] &&
+										element.styles[ 'border-right' ] === element.styles[ 'border-top' ] &&
+										element.styles[ 'border-top' ] === element.styles[ 'border-bottom' ] ) {
+									parsedStyle = CKEDITOR.tools.style.parse.border( element.styles[ 'border-top' ] );
+									if ( parsedStyle.style && parsedStyle.style === 'solid' &&
+											parsedStyle.width && parseFloat( parsedStyle.width ) !== 0 ) {
+										element.attributes.border = 1;
+									}
 								}
 							}
 							if ( element.styles[ 'border-collapse' ] == 'collapse' ) {
