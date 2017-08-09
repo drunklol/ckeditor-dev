@@ -1729,7 +1729,7 @@
 
 				/**
 				 * Parses the `border` CSS property shorthand format.
-				 * This CSS property doesn't support inherit. (https://www.w3.org/TR/css3-background/#the-border-shorthands)
+				 * This CSS property doesn't support inherit (https://www.w3.org/TR/css3-background/#the-border-shorthands).
 				 *
 				 *		console.log( CKEDITOR.tools.style.parse.border( '3px solid #ffeedd' ) );
 				 *		// Logs: { width: "3px", style: "solid", color: "#ffeedd" }

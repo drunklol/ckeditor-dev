@@ -127,7 +127,7 @@
 					'</tbody>' +
 				'</table>' );
 
-			assert.isTrue( /border="0"/.test( bot.editor.getData() ), 'Border attribute shoulde be zero' );
+			assert.isTrue( /border="0"/.test( bot.editor.getData() ), 'Border attribute should be zero' );
 		},
 
 		'test html border attribute behaviour when CSS border is not  0': function() {
@@ -143,7 +143,7 @@
 					'</tbody>' +
 				'</table>' );
 
-			assert.isTrue( /border="1"/.test( bot.editor.getData() ), 'Border attribute shoulde not be zero' );
+			assert.isTrue( /border="1"/.test( bot.editor.getData() ), 'Border attribute should be one' );
 		}
 	} );
 
