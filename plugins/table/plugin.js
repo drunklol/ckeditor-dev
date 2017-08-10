@@ -33,21 +33,20 @@ CKEDITOR.plugins.add( 'table', {
 							var parsedStyle;
 							if ( element.styles.border ) {
 								parsedStyle = CKEDITOR.tools.style.parse.border( element.styles.border );
-								if ( parsedStyle.style && parsedStyle.style === 'solid' &&
-										parsedStyle.width && parseFloat( parsedStyle.width ) !== 0 ) {
-									element.attributes.border = 1;
+							} else if ( CKEDITOR.env.ie && CKEDITOR.env.version === 8 ) {
+								var styleData = element.styles;
+								// Workaround for IE8 browser. IE8 after parsing CSS border param changes it for it
+								// basic comoponents(border-top...border-right). We have to check if those parameters exists and
+								// have the same value to get expected editor behavior. (#566)
+								if ( styleData[ 'border-left' ] && styleData[ 'border-left' ] === styleData[ 'border-right' ] &&
+										styleData[ 'border-right' ] === styleData[ 'border-top' ] &&
+										styleData[ 'border-top' ] === styleData[ 'border-bottom' ] ) {
+									parsedStyle = CKEDITOR.tools.style.parse.border( styleData[ 'border-top' ] );
 								}
 							}
-							if ( CKEDITOR.env.ie && CKEDITOR.env.version === 8 ) {
-								if ( element.styles[ 'border-left' ] && element.styles[ 'border-left' ] === element.styles[ 'border-right' ] &&
-										element.styles[ 'border-right' ] === element.styles[ 'border-top' ] &&
-										element.styles[ 'border-top' ] === element.styles[ 'border-bottom' ] ) {
-									parsedStyle = CKEDITOR.tools.style.parse.border( element.styles[ 'border-top' ] );
-									if ( parsedStyle.style && parsedStyle.style === 'solid' &&
-											parsedStyle.width && parseFloat( parsedStyle.width ) !== 0 ) {
-										element.attributes.border = 1;
-									}
-								}
+							if ( parsedStyle && parsedStyle.style && parsedStyle.style === 'solid' &&
+								parsedStyle.width && parseFloat( parsedStyle.width ) !== 0 ) {
+								element.attributes.border = 1;
 							}
 							if ( element.styles[ 'border-collapse' ] == 'collapse' ) {
 								element.attributes.cellspacing = 0;

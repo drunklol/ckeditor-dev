@@ -113,7 +113,7 @@
 			assert.areEqual( '', bot.editor.getData() );
 		},
 
-		// https://github.com/ckeditor/ckeditor-dev/issues/566
+		// (#566)
 		'test html border attribute behaviour when CSS border is 0': function() {
 			var bot = this.editorBots.editor;
 
